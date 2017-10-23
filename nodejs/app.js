@@ -60,51 +60,55 @@ app.get("/api/photo/put/:photoId", function(req, res, next){
 
 // 写真を取得するAPI
 app.get("/api/photo/get/:photoId", function(req, res, next){
-	var selector = {
-		q: "pid:" + req.params.photoId
+	var query = {
+		"selector": {
+			"pid" : req.params.photoId
+		}
 	};
 
-	var resultData = [];
+	db.find(query, function(err, data) {
+		if (err) {
+			console.log("DB Access Erroe!!!");
+			res.json(err);
 
-	db.search('beacondbdoc', 'pid-text', selector, function(er, result) {
-		if (er) {
-			console.log("DB Access Error!!!");
-			res.json(er);
-		} else {
-			console.log('Showing %d out of a total %d', result.rows.length, result.total_rows);
-
-			if (result.rows.length === 0) {
-				// ドキュメントが一件もないときの処理
-			} else {
-				for (var i = 0; i < result.rows.length; i++) {
-					db.get(result.rows[i].id, function(er2, data) {
-						if (er2) {
-							console.log("DB Access Error2!!!");  
-							res.json(er);
-						} else {
-							resultData.push(data);
-						}
-					});
-				}
-			} 
+			return;
 		}
-	});
 
-	res.json(resultData);
+		if (data.docs.length === 0) {
+			console.log("No Data.");
+			return;
+		}
+
+		console.log("Data Count: " + data.docs.length);
+
+		var resultData = [];
+
+		for (var i = 0; i < data.docs.length; i++) {
+			resultData.push(data.docs[i]);
+		}
+
+		res.json(resultData);
+	});
 });
 
 app.get("/api/photo/get2/:photoId", function(req, res, next){
-	var selector = {
-		q: "pid:301"
+	var query = {
+		"selector": {
+			"pid" : {
+				"$gt" : req.params.photoId
+			}
+		}
 	};
 
-	db.search('beacondbdoc', 'pid-text', selector, function(er, result) {
-		if (er) {
+	db.find(query, function(err, data) {
+		if (err) {
 			console.log("DB Access Erroe!!!");
-			res.json(er);
-		} else {
-			res.json(result.rows);
+			res.json(err);
+
+			return;
 		}
+
+		res.json(data.docs);
 	});
 });
 
