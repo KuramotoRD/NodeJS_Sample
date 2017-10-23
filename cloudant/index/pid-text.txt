@@ -1,0 +1,13 @@
+{
+  "index": {
+    "fields": [
+      {
+        "name": "pid",
+        "type": "string"
+      }
+    ]
+  },
+  "ddoc": "beacondbdoc",
+  "name": "pid-text",
+  "type": "text"
+}
