@@ -1,0 +1,18 @@
+{
+  "selector": {
+    "pid": {
+      "$gt": "300"
+    }
+  },
+  "fields": [
+    "pid",
+    "name",
+    "type",
+    "dataUrl"
+  ],
+  "sort": [
+    {
+     "pid:string": "desc"
+    }
+  ]
+}

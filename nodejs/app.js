@@ -68,7 +68,7 @@ app.get("/api/photo/get/:photoId", function(req, res, next){
 
 	db.find(query, function(err, data) {
 		if (err) {
-			console.log("DB Access Erroe!!!");
+			console.log("DB Access Error!!!");
 			res.json(err);
 
 			return;
@@ -97,12 +97,17 @@ app.get("/api/photo/get2/:photoId", function(req, res, next){
 			"pid" : {
 				"$gt" : req.params.photoId
 			}
-		}
+		},
+		"sort": [
+			{
+				"pid:string": "asc"
+			}
+		]
 	};
 
 	db.find(query, function(err, data) {
 		if (err) {
-			console.log("DB Access Erroe!!!");
+			console.log("DB Access Error!!!");
 			res.json(err);
 
 			return;
