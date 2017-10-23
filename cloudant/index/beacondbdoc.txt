@@ -1,0 +1,28 @@
+{
+  "_id": "_design/beacondbdoc",
+  "_rev": "10-aab293481e17c4ce82f8a8d9e8f11d01",
+  "language": "query",
+  "indexes": {
+    "pid-text": {
+      "index": {
+        "default_analyzer": "keyword",
+        "default_field": {},
+        "selector": {},
+        "fields": [
+          {
+            "name": "pid",
+            "type": "string"
+          }
+        ],
+        "index_array_lengths": true
+      },
+      "analyzer": {
+        "name": "perfield",
+        "default": "keyword",
+        "fields": {
+          "$default": "standard"
+        }
+      }
+    }
+  }
+}
