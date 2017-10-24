@@ -1,0 +1,5 @@
+function (doc) {
+  if (doc.type == "jpg") {
+    emit(doc.pid, doc.name, doc.type, doc.dataUrl);
+  }
+}

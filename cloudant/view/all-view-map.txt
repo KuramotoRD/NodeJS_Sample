@@ -1,0 +1,3 @@
+function (doc) {
+  emit(doc.pid, doc.name, doc.type, doc.dataUrl);
+}
