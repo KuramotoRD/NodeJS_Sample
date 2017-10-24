@@ -2,6 +2,13 @@
 var express = require("express");
 var app = express();
 
+// BodyParser
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
 /* 2. listen()メソッドを実行して3000番ポートで待ち受け。*/
 var server = app.listen(process.env.PORT || 3000, function(){
 	console.log("Node.js is listening to PORT:" + server.address().port);
@@ -95,6 +102,29 @@ app.get("/api/photo/put/:photoId", function(req, res, next){
 	});
 
 	res.json(photoData);
+});
+
+
+// 写真を追加するAPI(JSON版)
+app.post("/api/photo/put/json", function(req, res, next){
+	console.log(req.body);
+
+	db.insert(req.body, function (err, result) {
+		if (err) {
+			console.log("DB Access Error!!!");
+			console.log(err);
+
+			res.json({
+				resultFlag: false,
+				message: "DB Access Error!!!"
+			});
+		}
+
+		res.json({
+			resultFlag: true,
+			message: "sucess"
+		});
+	});
 });
 
 // 写真を取得するAPI
