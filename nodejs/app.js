@@ -29,6 +29,45 @@ app.get("/api/photo/list", function(req, res, next){
 	res.json(photoList);
 });
 
+// 写真リストを取得するAPI
+app.get("/api/photo/list/all", function(req, res, next){
+	db.view('beacondbdoc2', 'all-view', function(err, result) {
+		if (err) {
+			console.log("DB Access Error!!!");
+		}
+
+		console.log("Selected: %d", result.total_rows);
+
+		res.json(result.rows);
+	});
+});
+
+// JPEG写真リストを取得するAPI
+app.get("/api/photo/list/jpeg", function(req, res, next){
+	db.view('beacondbdoc2', 'jpeg-view', function(err, result) {
+		if (err) {
+			console.log("DB Access Error!!!");
+		}
+
+		console.log("Selected: %d", result.total_rows);
+
+		res.json(result.rows);
+	});
+});
+
+// PNG写真リストを取得するAPI
+app.get("/api/photo/list/png", function(req, res, next){
+	db.view('beacondbdoc2', 'png-view', function(err, result) {
+		if (err) {
+			console.log("DB Access Error!!!");
+		}
+
+		console.log("Selected: %d", result.total_rows);
+
+		res.json(result.rows);
+	});
+});
+
 // 写真リストを取得するAPI (photoID指定)
 app.get("/api/photo/:photoId", function(req, res, next){
 	var photo;
@@ -49,8 +88,8 @@ app.get("/api/photo/put/:photoId", function(req, res, next){
 		dataUrl: "http://localhost:3000/data/photo" + req.params.photoId + ".jpg"
 	};
 
-	db.insert(photoData, function (er, result) {
-		if (er) {
+	db.insert(photoData, function (err, result) {
+		if (err) {
 			console.log("DB Access Error!!!");
 		}
 	});
