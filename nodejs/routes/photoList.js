@@ -10,6 +10,9 @@ router.get("/all", function(req, res, next){
 	db.view('beacondbdoc2', 'all-view', function(err, result) {
 		if (err) {
 			console.log("DB Access Error!!!");
+			res.json(err);
+
+			return;
 		}
 
 		console.log("Selected: %d", result.total_rows);
@@ -23,6 +26,9 @@ router.get("/jpeg", function(req, res, next){
 	db.view('beacondbdoc2', 'jpeg-view', function(err, result) {
 		if (err) {
 			console.log("DB Access Error!!!");
+			res.json(err);
+
+			return;
 		}
 
 		console.log("Selected: %d", result.total_rows);
@@ -36,6 +42,9 @@ router.get("/png", function(req, res, next){
 	db.view('beacondbdoc2', 'png-view', function(err, result) {
 		if (err) {
 			console.log("DB Access Error!!!");
+			res.json(err);
+
+			return;
 		}
 
 		console.log("Selected: %d", result.total_rows);

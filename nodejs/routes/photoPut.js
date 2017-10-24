@@ -45,6 +45,9 @@ router.get("/:photoId", function(req, res, next){
 	db.insert(photoData, function (err, result) {
 		if (err) {
 			console.log("DB Access Error!!!");
+			res.json(err);
+
+			return;
 		}
 	});
 
@@ -87,6 +90,8 @@ router.post("/json", function(req, res, next){
 				resultFlag: false,
 				message: "DB Access Error!!!"
 			});
+
+			return;
 		}
 
 		res.json({
