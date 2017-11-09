@@ -8,32 +8,32 @@ var db = cloudant.db.use('beacondb');
 var Validator = require('jsonschema').Validator;
 var photoValidator = new Validator();
 
-// JSONƒXƒL[ƒ}
+// JSONã‚¹ã‚­ãƒ¼ãƒ
 const photoSchema = {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"required": ["pid", "name", "type", "dataUrl"],
 	"properties": {
 		"pid": {
-			"description": "Ê^ID",
+			"description": "å†™çœŸID",
 			"type": "string"
 		},
 		"name": {
-			"description": "ƒtƒ@ƒCƒ‹–¼",
+			"description": "ãƒ•ã‚¡ã‚¤ãƒ«å",
 			"type": "string"
 		},
 		"type": {
-			"description": "Šg’£q",
+			"description": "æ‹¡å¼µå­",
 			"type": "string"
 		},
 		"dataUrl": {
-			"description": "Ú‘±URL",
+			"description": "æ¥ç¶šURL",
 			"type": "string"
 		}
 	}
 };
 
-// Ê^‚ğ’Ç‰Á‚·‚éAPI
+// å†™çœŸã‚’è¿½åŠ ã™ã‚‹API
 router.get("/:photoId", function(req, res, next){
 	var photoData = {
 		pid: req.params.photoId,
@@ -54,11 +54,11 @@ router.get("/:photoId", function(req, res, next){
 	res.json(photoData);
 });
 
-// Ê^‚ğ’Ç‰Á‚·‚éAPI(JSON”Å)
+// å†™çœŸã‚’è¿½åŠ ã™ã‚‹API(JSONç‰ˆ)
 router.post("/json", function(req, res, next){
 	console.log(req.body);
 
-	// JSONƒoƒŠƒf[ƒVƒ‡ƒ“
+	// JSONãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³
 	var check = photoValidator.validate(req.body, photoSchema);
 	if (check.errors.length > 0) {
 		console.log(check.errors);
@@ -80,7 +80,7 @@ router.post("/json", function(req, res, next){
 		return;
 	}
 
-	// ƒf[ƒ^“o˜^
+	// ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	db.insert(req.body, function (err, result) {
 		if (err) {
 			console.log("DB Access Error!!!");

@@ -1,4 +1,4 @@
-/* 1. expressƒ‚ƒWƒ…[ƒ‹‚ğƒ[ƒh‚µAƒCƒ“ƒXƒ^ƒ“ƒX‰»‚µ‚Äapp‚É‘ã“üB*/
+/* 1. expressãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã—ã¦appã«ä»£å…¥ã€‚*/
 var express = require("express");
 var app = express();
 
@@ -9,12 +9,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-/* 2. listen()ƒƒ\ƒbƒh‚ğÀs‚µ‚Ä3000”Ôƒ|[ƒg‚Å‘Ò‚¿ó‚¯B*/
+/* 2. listen()ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè¡Œã—ã¦3000ç•ªãƒãƒ¼ãƒˆã§å¾…ã¡å—ã‘ã€‚*/
 var server = app.listen(process.env.PORT || 3000, function(){
 	console.log("Node.js is listening to PORT:" + server.address().port);
 });
 
-// View Engine‚ÉEJS‚ğw’èB
+// View Engineã«EJSã‚’æŒ‡å®šã€‚
 app.set('view engine', 'ejs');
 
 // Routes
@@ -26,7 +26,7 @@ app.use("/api/photo/list", photoList);
 app.use("/api/photo/put", photoPut);
 app.use("/api/photo/get", photoGet);
 
-// "/"‚Ö‚ÌGETƒŠƒNƒGƒXƒg‚Åindex.ejs‚ğ•\¦‚·‚éBŠg’£qi.ejsj‚ÍÈ—ª‚³‚ê‚Ä‚¢‚é‚±‚Æ‚É’ˆÓB
+// "/"ã¸ã®GETãƒªã‚¯ã‚¨ã‚¹ãƒˆã§index.ejsã‚’è¡¨ç¤ºã™ã‚‹ã€‚æ‹¡å¼µå­ï¼ˆ.ejsï¼‰ã¯çœç•¥ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã«æ³¨æ„ã€‚
 app.get("/", function(req, res, next){
 	res.render("index", {});
 });

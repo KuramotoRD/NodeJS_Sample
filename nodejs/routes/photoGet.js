@@ -5,7 +5,7 @@ var Cloudant = require('cloudant');
 var cloudant = Cloudant({instanceName: "Cloudant NoSQL DB-BeaconDataPool2", vcapServices: JSON.parse(process.env.VCAP_SERVICES)});
 var db = cloudant.db.use('beacondb');
 
-// Ê^‚ğæ“¾‚·‚éAPI
+// å†™çœŸã‚’å–å¾—ã™ã‚‹API
 router.get("/:photoId", function(req, res, next){
 	var query = {
 		"selector": {
